@@ -1,11 +1,27 @@
 site_name: RoboSecurityArena
 site_url: https://ZJUshine.github.io/RoboSecurityArena-Document
 site_author: ZJUshine
+copyright: 'Copyright &copy; 2026 ZJUshine. All rights reserved.'
 docs_dir: docs
 repo_url: https://github.com/ZJUshine/RoboSecurityArena
 repo_name: RoboSecurityArena
+nav:
+  - Home:
+    - overview.md
+    - supported_list.md
+  - Quick Start:
+    - structure.md
+    - wuyingyun.md
+    - quickstart.md
+    
 theme:
   name: material
   language: zh
   icon: 
     repo: fontawesome/brands/github
+  features:
+    - navigation.tabs
+
+markdown_extensions:
+  - pymdownx.tasklist:
+      custom_checkbox: true
