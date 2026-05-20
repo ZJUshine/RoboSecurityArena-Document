@@ -7,7 +7,7 @@ repo_url: https://github.com/ZJUshine/RoboSecurityArena
 repo_name: RoboSecurityArena
 nav:
   - Home:
-    - overview.md
+    - index.md
     - supported_list.md
   - Quick Start:
     - structure.md
