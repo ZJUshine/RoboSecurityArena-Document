@@ -1,0 +1,1772 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="ZJUshine">
+      
+      
+        <link rel="canonical" href="https://ZJUshine.github.io/RoboSecurityArena-Document/interfaces/policy_adapter/">
+      
+      
+        <link rel="prev" href="../security_task/">
+      
+      
+        <link rel="next" href="../security_evaluator/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>3. PolicyAdapter - RoboSecurityArena</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#3policyadapter" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../.." title="RoboSecurityArena" class="md-header__button md-logo" aria-label="RoboSecurityArena" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            RoboSecurityArena
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              3. PolicyAdapter
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/ZJUshine/RoboSecurityArena" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    RoboSecurityArena
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../.." class="md-tabs__link">
+          
+  
+  
+  Home
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../structure/" class="md-tabs__link">
+          
+  
+  
+  Quick Start
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../overview/" class="md-tabs__link">
+          
+  
+  
+  Interface Modules
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="RoboSecurityArena" class="md-nav__button md-logo" aria-label="RoboSecurityArena" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    RoboSecurityArena
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/ZJUshine/RoboSecurityArena" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    RoboSecurityArena
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Home
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../supported_list/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Supported List
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quick Start
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Quick Start
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../structure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Structure
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../wuyingyun/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Wuyingyun
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interface Modules
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Interface Modules
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data_types/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Types
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../arena_config/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. ArenaConfig
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../security_task/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. SecurityTask
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. PolicyAdapter
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. PolicyAdapter
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        角色与定位
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        类签名
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="类签名">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        必须 / 可选实现矩阵
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_internal_state" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_internal_state 键空间约定
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        输入与输出
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="输入与输出">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        输入
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        输出
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#arenaconfig" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        配置（在 ArenaConfig 中的对应块）
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        最小可用示例
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="最小可用示例">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#llmvlm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LLM/VLM 适配器
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vla" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VLA 适配器
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        自定义扩展
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        与其他接口的交互
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../security_evaluator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. SecurityEvaluator
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../observation_hook/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5. ObservationHook
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../action_hook/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6. ActionHook
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../attack_module/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7. AttackModule
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../defense_module/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8. DefenseModule
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        角色与定位
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        类签名
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="类签名">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        必须 / 可选实现矩阵
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_internal_state" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_internal_state 键空间约定
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        输入与输出
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="输入与输出">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        输入
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        输出
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#arenaconfig" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        配置（在 ArenaConfig 中的对应块）
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        最小可用示例
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="最小可用示例">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#llmvlm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        LLM/VLM 适配器
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vla" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        VLA 适配器
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        自定义扩展
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        与其他接口的交互
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="3policyadapter">接口 3：<code>PolicyAdapter</code> —— 被测策略</h1>
+<h2 id="_1">角色与定位</h2>
+<p><code>PolicyAdapter</code> 把异构被测模型抽象成统一接口，<strong>让上层 runner 不必关心模型是 LLM 还是 VLA</strong>。覆盖四类模型：</p>
+<table>
+<thead>
+<tr>
+<th>适配器类型</th>
+<th>典型模型</th>
+<th>IO 关键差异</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>llm</code></td>
+<td>GPT-4o、Llama-3、Qwen-VL（含 VLM）</td>
+<td>输入文本+可选图像，输出文本计划</td>
+</tr>
+<tr>
+<td><code>vla</code></td>
+<td>OpenVLA、RT-2、π0</td>
+<td>输入图像+指令，输出末端/关节动作</td>
+</tr>
+<tr>
+<td><code>wam</code></td>
+<td>World-Action Model（带规划的 VLA）</td>
+<td>输入图像+指令，输出动作 + 内部规划/世界状态</td>
+</tr>
+<tr>
+<td><code>brain</code></td>
+<td>多模型协同 Agent（含 LLM 上层 + 控制器下层）</td>
+<td>输入观测，输出动作；可能多步内部推理</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>攻击/防御只跟<strong>接口</strong>打交道，所以同一套攻击代码可以同时跑 LLM 与 VLA。</p>
+</blockquote>
+<hr />
+<h2 id="_2">类签名</h2>
+<pre><code class="language-python"># source/security/adapters/base.py
+from abc import ABC, abstractmethod
+from typing import Any, Optional
+import numpy as np
+
+from source.security.types import Observation, Action
+
+class PolicyAdapter(ABC):
+    adapter_type: str            # &quot;llm&quot; | &quot;vla&quot; | &quot;wam&quot; | &quot;brain&quot;
+    policy_id: str
+
+    # ---- 生命周期 ----
+    def setup(self, ctx: &quot;EpisodeContext&quot;) -&gt; None: ...
+    def reset(self) -&gt; None: ...
+    def teardown(self) -&gt; None: ...
+
+    # ---- 核心 ----
+    @abstractmethod
+    def act(self, obs: Observation) -&gt; Action: ...
+
+    # ---- 可选能力 ----
+    def plan(self, obs: Observation) -&gt; Optional[str]:
+        &quot;&quot;&quot;返回自然语言计划/推理。LLM/WAM 必实现，VLA 可返回 None。&quot;&quot;&quot;
+        return None
+
+    def get_logits(self, obs: Observation) -&gt; Optional[np.ndarray]:
+        &quot;&quot;&quot;离散动作或词表 logits。白盒攻击需要时调用。&quot;&quot;&quot;
+        return None
+
+    def get_internal_state(self) -&gt; dict[str, Any]:
+        &quot;&quot;&quot;暴露白盒探针。键空间约定见下表。&quot;&quot;&quot;
+        return {}
+
+    def load_checkpoint(self, path: str, *, strict: bool = True) -&gt; None: ...
+
+    # ---- 元信息 ----
+    def capabilities(self) -&gt; set[str]:
+        &quot;&quot;&quot;声明实现了哪些可选方法，避免 runner 反射判断。&quot;&quot;&quot;
+        return {&quot;act&quot;}
+</code></pre>
+<h3 id="_3">必须 / 可选实现矩阵</h3>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th><code>llm</code></th>
+<th><code>vla</code></th>
+<th><code>wam</code></th>
+<th><code>brain</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>act</code></td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td><code>plan</code></td>
+<td>✅</td>
+<td>可选</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+<tr>
+<td><code>get_logits</code></td>
+<td>黑盒可省</td>
+<td>白盒攻击需</td>
+<td>白盒攻击需</td>
+<td>通常省</td>
+</tr>
+<tr>
+<td><code>get_internal_state</code></td>
+<td>可选</td>
+<td>可选</td>
+<td>✅ 推荐</td>
+<td>可选</td>
+</tr>
+<tr>
+<td><code>load_checkpoint</code></td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+</tbody>
+</table>
+<p><code>capabilities()</code> 用于 runner 在装配阶段就拒绝"白盒攻击 + 黑盒策略"这种不兼容组合。</p>
+<h3 id="get_internal_state"><code>get_internal_state</code> 键空间约定</h3>
+<table>
+<thead>
+<tr>
+<th>键</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>hidden_states.&lt;layer&gt;</code></td>
+<td><code>np.ndarray</code></td>
+<td>隐藏层激活，layer 名由模型自决</td>
+</tr>
+<tr>
+<td><code>attention.&lt;layer&gt;</code></td>
+<td><code>np.ndarray</code></td>
+<td>注意力权重</td>
+</tr>
+<tr>
+<td><code>world_model.predicted_frames</code></td>
+<td><code>np.ndarray</code></td>
+<td>WAM 预测的未来帧</td>
+</tr>
+<tr>
+<td><code>world_model.value</code></td>
+<td><code>float</code></td>
+<td>WAM 评估的当前价值</td>
+</tr>
+<tr>
+<td><code>brain.subgoals</code></td>
+<td><code>list[str]</code></td>
+<td>Brain 当前子目标栈</td>
+</tr>
+</tbody>
+</table>
+<p>未实现的键直接不返回；不要返回 <code>None</code>。</p>
+<hr />
+<h2 id="_4">输入与输出</h2>
+<h3 id="_5">输入</h3>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>输入</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>setup(ctx)</code></td>
+<td><code>EpisodeContext</code>，含 <code>policy_id</code>、日志句柄、workspace</td>
+</tr>
+<tr>
+<td><code>act(obs)</code></td>
+<td><code>Observation</code></td>
+</tr>
+<tr>
+<td><code>plan(obs)</code></td>
+<td><code>Observation</code></td>
+</tr>
+<tr>
+<td><code>get_logits(obs)</code></td>
+<td><code>Observation</code></td>
+</tr>
+<tr>
+<td><code>load_checkpoint(path)</code></td>
+<td>文件路径或 HF 仓库 id</td>
+</tr>
+</tbody>
+</table>
+<p><code>Observation</code> 字段约束（按适配器类型）：</p>
+<table>
+<thead>
+<tr>
+<th>适配器</th>
+<th>必读字段</th>
+<th>推荐字段</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>llm</code></td>
+<td><code>instruction</code></td>
+<td><code>images["head"]</code>（多模态时）</td>
+</tr>
+<tr>
+<td><code>vla</code></td>
+<td><code>instruction</code>, <code>images</code>, <code>proprio</code></td>
+<td><code>depth</code></td>
+</tr>
+<tr>
+<td><code>wam</code></td>
+<td><code>instruction</code>, <code>images</code>, <code>proprio</code></td>
+<td><code>depth</code>, <code>extra.object_poses</code></td>
+</tr>
+<tr>
+<td><code>brain</code></td>
+<td><code>instruction</code>, <code>images</code>, <code>proprio</code>, <code>extra</code></td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p>适配器<strong>不允许直接读 <code>EnvState</code></strong>——那是评估器特权。</p>
+<h3 id="_6">输出</h3>
+<p><code>act()</code> 必须返回 <code>Action</code>。各适配器的常见 <code>Action.type</code> 取值：</p>
+<table>
+<thead>
+<tr>
+<th>适配器</th>
+<th>常见 <code>type</code></th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>llm</code></td>
+<td><code>text_only</code> / <code>discrete</code></td>
+<td>无连续控制能力时只能产文本</td>
+</tr>
+<tr>
+<td><code>vla</code></td>
+<td><code>ee_delta</code> / <code>joint_pos</code></td>
+<td>由模型 head 决定</td>
+</tr>
+<tr>
+<td><code>wam</code></td>
+<td><code>ee_delta</code> + <code>text</code>（plan 字段）</td>
+<td><code>text</code> 字段附带规划</td>
+</tr>
+<tr>
+<td><code>brain</code></td>
+<td><code>ee_delta</code> / <code>joint_pos</code> + 长 <code>text</code></td>
+<td>内部多步推理被压缩成单步动作</td>
+</tr>
+</tbody>
+</table>
+<p><code>Action.meta</code> 推荐字段：<code>latency_ms</code> (float)、<code>confidence</code> (float in [0,1])、<code>adapter_id</code> (str)。</p>
+<hr />
+<h2 id="arenaconfig">配置（在 ArenaConfig 中的对应块）</h2>
+<pre><code class="language-yaml">policy:
+  id: &lt;str&gt;                    # 必填，本次评测的策略 ID
+  adapter: &lt;&quot;llm&quot;|&quot;vla&quot;|&quot;wam&quot;|&quot;brain&quot;&gt;
+  module: &lt;python.path&gt;        # PolicyAdapter 子类
+  config:                      # 透传给子类构造函数
+    checkpoint: &lt;str&gt;
+    device: &lt;str&gt;              # 默认 &quot;cuda:0&quot;
+    dtype: &lt;&quot;fp32&quot;|&quot;fp16&quot;|&quot;bf16&quot;&gt;
+    max_new_tokens: &lt;int&gt;      # llm/wam/brain
+    temperature: &lt;float&gt;
+    action_chunk_size: &lt;int&gt;   # vla/wam
+    action_space:              # 可选，显式声明输出
+      type: &lt;&quot;ee_delta&quot;|&quot;joint_pos&quot;|...&gt;
+      dim: &lt;int&gt;
+      bounds: [[&lt;float&gt;, &lt;float&gt;], ...]
+    api:                       # 远端模型才填
+      base_url: &lt;str&gt;
+      api_key_env: &lt;str&gt;
+      timeout: &lt;int&gt;
+</code></pre>
+<p>字段说明：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>必填</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>✅</td>
+<td>日志与指标 breakdown 用</td>
+</tr>
+<tr>
+<td><code>adapter</code></td>
+<td>✅</td>
+<td>必须与 <code>module</code> 中实现的 <code>adapter_type</code> 一致，否则 runner 报错</td>
+</tr>
+<tr>
+<td><code>module</code></td>
+<td>✅</td>
+<td>形如 <code>source.security.adapters.vla.OpenVLAAdapter</code></td>
+</tr>
+<tr>
+<td><code>config.checkpoint</code></td>
+<td>✅</td>
+<td>本地路径或 HF 仓库 id</td>
+</tr>
+<tr>
+<td><code>config.action_space</code></td>
+<td>❌</td>
+<td>不填时 runner 在第一次 <code>act()</code> 后从返回值推断；填了可校验</td>
+</tr>
+<tr>
+<td><code>config.api.*</code></td>
+<td>视情况</td>
+<td>远端 API 必填；本地模型留空</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="_7">最小可用示例</h2>
+<h3 id="llmvlm">LLM/VLM 适配器</h3>
+<pre><code class="language-python"># source/security/adapters/llm.py
+from source.security.adapters.base import PolicyAdapter
+from source.security.types import Action
+
+class GPTAdapter(PolicyAdapter):
+    adapter_type = &quot;llm&quot;
+
+    def __init__(self, config: dict):
+        self.client = build_openai_client(config[&quot;api&quot;])
+        self.model = config[&quot;checkpoint&quot;]      # e.g. &quot;gpt-4o-mini&quot;
+        self.system = config.get(&quot;system_prompt&quot;,
+            &quot;You are a household robot. Output JSON {action, plan}.&quot;)
+
+    def act(self, obs):
+        messages = self._build_messages(obs)
+        resp = self.client.chat.completions.create(
+            model=self.model, messages=messages, max_tokens=512)
+        parsed = parse_json(resp.choices[0].message.content)
+        return Action(type=&quot;text_only&quot;,
+                      payload=parsed.get(&quot;action&quot;, &quot;&quot;),
+                      text=parsed.get(&quot;plan&quot;),
+                      meta={&quot;adapter_id&quot;: &quot;gpt&quot;, &quot;tokens&quot;: resp.usage.total_tokens})
+
+    def plan(self, obs):
+        return self.act(obs).text
+
+    def capabilities(self):
+        return {&quot;act&quot;, &quot;plan&quot;}
+</code></pre>
+<h3 id="vla">VLA 适配器</h3>
+<pre><code class="language-python"># source/security/adapters/vla.py
+import torch
+
+class OpenVLAAdapter(PolicyAdapter):
+    adapter_type = &quot;vla&quot;
+
+    def __init__(self, config):
+        self.model = load_openvla(config[&quot;checkpoint&quot;], device=config[&quot;device&quot;])
+        self.device = config[&quot;device&quot;]
+        self.action_chunk = config.get(&quot;action_chunk_size&quot;, 1)
+
+    def act(self, obs):
+        img = obs.images[&quot;head&quot;]
+        instr = obs.instruction
+        with torch.no_grad():
+            delta = self.model.predict_action(image=img, instruction=instr,
+                                              proprio=obs.proprio[&quot;joint_pos&quot;])
+        return Action(type=&quot;ee_delta&quot;,
+                      payload=delta.cpu().numpy(),
+                      meta={&quot;adapter_id&quot;: &quot;openvla&quot;})
+
+    def get_logits(self, obs):
+        img = obs.images[&quot;head&quot;]
+        return self.model.action_logits(img, obs.instruction).cpu().numpy()
+
+    def capabilities(self):
+        return {&quot;act&quot;, &quot;get_logits&quot;, &quot;load_checkpoint&quot;}
+</code></pre>
+<hr />
+<h2 id="_8">自定义扩展</h2>
+<ol>
+<li>继承 <code>PolicyAdapter</code>，设置 <code>adapter_type</code>，至少实现 <code>__init__(self, config)</code> 与 <code>act()</code>。</li>
+<li>在 <code>source/security/adapters/__init__.py</code> 用 <code>@register_adapter("my_adapter")</code> 注册（可选；YAML 也可直接用全限定路径）。</li>
+<li>多 GPU / 分布式推理在适配器内部封装；对外仍是同步 <code>act()</code>。</li>
+<li><strong>严禁</strong>在适配器里直接调用 task 或仿真器接口；所需信息都从 <code>Observation</code> 拿。</li>
+<li>远端 API 适配器必须实现超时与重试，并在 <code>Action.meta</code> 记录 <code>latency_ms</code>、<code>retry_count</code>。</li>
+<li>若策略本身需要随机性，<strong>只用 <code>EpisodeContext.seed</code> 派生子种子</strong>，保证 reproducibility。</li>
+</ol>
+<hr />
+<h2 id="_9">与其他接口的交互</h2>
+<table>
+<thead>
+<tr>
+<th>接口</th>
+<th>交互方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../security_task/">SecurityTask</a></td>
+<td>通过 <code>Observation</code> 间接消费任务输出</td>
+</tr>
+<tr>
+<td><a href="../observation_hook/">ObservationHook</a></td>
+<td>obs 在到达 <code>act()</code> 之前可能被改写；适配器无感</td>
+</tr>
+<tr>
+<td><a href="../action_hook/">ActionHook</a></td>
+<td><code>act()</code> 返回的动作可能被改写后再落到仿真器；适配器无感</td>
+</tr>
+<tr>
+<td><a href="../attack_module/">AttackModule</a></td>
+<td>白盒攻击会调 <code>get_logits</code> / <code>get_internal_state</code>；适配器须如实暴露能力声明</td>
+</tr>
+<tr>
+<td><a href="../defense_module/">DefenseModule</a></td>
+<td>"模型对齐"类防御可能 wrap 适配器（装饰器模式），对外仍是 <code>PolicyAdapter</code></td>
+</tr>
+<tr>
+<td><a href="../security_evaluator/">SecurityEvaluator</a></td>
+<td>读取 <code>Action.text</code> / <code>Action.meta</code> 用于 VLM 判定</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2026 ZJUshine. All rights reserved.
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
