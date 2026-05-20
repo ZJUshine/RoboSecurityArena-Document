@@ -12,8 +12,19 @@ nav:
   - Quick Start:
     - structure.md
     - wuyingyun.md
-    - quickstart.md
-    
+  - Interface Modules:
+    - Overview: interfaces/overview.md
+    - Data Types: interfaces/data_types.md
+    - 1. ArenaConfig: interfaces/arena_config.md
+    - 2. SecurityTask: interfaces/security_task.md
+    - 3. PolicyAdapter: interfaces/policy_adapter.md
+    - 4. SecurityEvaluator: interfaces/security_evaluator.md
+    - 5. ObservationHook: interfaces/observation_hook.md
+    - 6. ActionHook: interfaces/action_hook.md
+    - 7. AttackModule: interfaces/attack_module.md
+    - 8. DefenseModule: interfaces/defense_module.md
+
+
 theme:
   name: material
   language: zh
